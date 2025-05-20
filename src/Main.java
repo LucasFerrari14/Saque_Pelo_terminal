@@ -42,7 +42,7 @@ public class Main {
 
 
     //Vai dividindo o valor total moedas/notas pelas existentes no caixa, ao final,
-    //retorna a quantidade necessária de cada moedas/notas.
+    //retorna a quantidade necessária de cada moedas/notas
     public static List<Integer> quantidadeTroco(int valor, int[] valores, int[] estoque) {
         List<Integer> resultado = new ArrayList<>();
 
@@ -51,13 +51,21 @@ public class Main {
             resultado.add(qtdUsada);
             valor -= qtdUsada * valores[i];
         }
-        if(valores == notas && valor > 0) {
+        if(!(verificaMoeda(valores)) && valor > 0) {
             sobra = valor;
-        }
-        if (valor > 1 && valores == moedas) {
+        } if (valor > 1) {
             System.out.println("\nEstoque de notas/moedas não suporta o valor solicitado\n");
             System.exit(0);
         }
         return resultado;
+    }
+
+    //verificar se a lista passada é a lista de moedas
+    public static Boolean verificaMoeda(int[] lista) {
+        if (lista == moedas) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
